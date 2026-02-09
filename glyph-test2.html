@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glyph Text</title>
+    <style>
+        :root {
+            --glyph-size: 64px;
+        }
+
+        body {
+            background: #111;
+            padding: 2rem;
+            line-height: 0; /* prevent extra spacing between inline SVGs */
+        }
+
+        /* Glyph SVG elements */
+        .glyph {
+            display: inline-block;
+            width: var(--glyph-size);
+            height: var(--glyph-size);
+            vertical-align: middle;
+        }
+
+        /* Raster images between glyphs */
+        .glyph-img {
+            display: inline-block;
+            width: var(--glyph-size);
+            height: var(--glyph-size);
+            vertical-align: middle;
+            object-fit: contain;
+        }
+
+        /* Paragraph break */
+        .glyph-break {
+            display: block;
+            height: calc(var(--glyph-size) * 0.15713);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hidden inline SVG symbols (for reliable cross-browser <use> referencing).
+     On GitHub Pages, external SVG <use href="symbol-defs.svg#..."> works in
+     modern browsers, but inlining guarantees compatibility and avoids CORS
+     issues. To switch to external referencing, remove this block and change
+     each href below from "#MWL-icon-anger" to "symbol-defs.svg#MWL-icon-anger". -->
+<div style="display:none;">
+    <!-- Paste the contents of symbol-defs.svg here, or use the JS loader below -->
+
+</div>
+
+<!-- JS loader: fetches symbol-defs.svg and injects it so <use href="#..."> works  -->
+<script>
+    fetch('symbol-defs.svg')
+        .then(r => r.text())
+        .then(svgText => {
+            const container = document.querySelector('div[style="display:none;"]');
+            container.innerHTML = svgText;
+        });
+</script> 
+
+<!-- Line 1: anger anger OUTPOST.png anger -->
+<svg class="glyph"><use href="#MWL-icon-anger" /></svg>
+<svg class="glyph"><use href="#MWL-icon-anger" /></svg>
+<img class="glyph-img" src="OUTPOST.png" alt="Outpost">
+<svg class="glyph"><use href="#MWL-icon-anger" /></svg>
+
+<!-- Paragraph break -->
+<div class="glyph-break"></div>
+
+<!-- Line 2: anger -->
+<svg class="glyph"><use href="#MWL-icon-anger" /></svg>
+
+</body>
+</html>
